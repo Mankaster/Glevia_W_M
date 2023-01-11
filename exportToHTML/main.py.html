@@ -1,0 +1,181 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">pyautogui</span>
+<span class="s0">import </span><span class="s1">time</span>
+<span class="s0">from </span><span class="s1">ahk </span><span class="s0">import </span><span class="s1">AHK</span>
+
+<span class="s0">def </span><span class="s1">wyjeb_ze_spawna():</span>
+    <span class="s1">sprawdz_marmurek()</span>
+    <span class="s1">sprawdz_buffy()</span>
+    <span class="s1">print(</span><span class="s2">&quot;LOKALIZUJE NIEBIESKIE GÓWNO&quot;</span><span class="s1">)</span>
+    <span class="s1">ahk.key_down(</span><span class="s2">'t'</span><span class="s1">)</span>
+    <span class="s1">time.sleep(</span><span class="s3">3</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'t'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_down(</span><span class="s2">'f'</span><span class="s1">)</span>
+    <span class="s1">time.sleep(</span><span class="s3">2</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'f'</span><span class="s1">)</span>
+    <span class="s1">niebieskiegowno = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;niebieskiegowno.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.80</span><span class="s1">)</span>
+    <span class="s0">while not </span><span class="s1">niebieskiegowno:</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">'e'</span><span class="s1">)</span>
+        <span class="s1">time.sleep(</span><span class="s3">0.5</span><span class="s1">)</span>
+        <span class="s1">ahk.key_up(</span><span class="s2">'e'</span><span class="s1">)</span>
+        <span class="s1">niebieskiegowno = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;niebieskiegowno.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.80</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s2">&quot;NIEBIESKIE GÓWNO ZNALEZIONE&quot;</span><span class="s1">)</span>
+    <span class="s1">pyautogui.moveTo(niebieskiegowno)</span>
+    <span class="s1">print(</span><span class="s2">&quot;WYJEBA ZE SPAWNA&quot;</span><span class="s1">)</span>
+    <span class="s1">ahk.key_down(</span><span class="s2">'w'</span><span class="s1">)</span>
+    <span class="s1">time.sleep(</span><span class="s3">4</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'w'</span><span class="s1">)</span>
+
+
+<span class="s0">def </span><span class="s1">znajdz_i_zbij_metina():</span>
+    <span class="s1">sprawdz_marmurek()</span>
+    <span class="s1">sprawdz_buffy()</span>
+    <span class="s1">print(</span><span class="s2">&quot;ZNAJDUJE I ZBIJAM METINA&quot;</span><span class="s1">)</span>
+    <span class="s1">metin = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;metin.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.75</span><span class="s1">)</span>
+    <span class="s0">while not </span><span class="s1">metin:</span>
+        <span class="s1">ahk.key_press(</span><span class="s2">'e'</span><span class="s1">)</span>
+        <span class="s1">metin = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;metin.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.75</span><span class="s1">)</span>
+    <span class="s1">print(metin)</span>
+    <span class="s1">pyautogui.moveTo(metin)</span>
+    <span class="s1">pozycja_nazwy_metina = pyautogui.position()</span>
+    <span class="s1">pozycja_metina = pozycja_nazwy_metina[</span><span class="s3">1</span><span class="s1">] + </span><span class="s3">120</span>
+    <span class="s1">pyautogui.moveTo(pozycja_nazwy_metina[</span><span class="s3">0</span><span class="s1">]</span><span class="s0">, </span><span class="s1">pozycja_metina)</span>
+    <span class="s1">pyautogui.click(button=</span><span class="s2">'left'</span><span class="s1">)</span>
+    <span class="s1">metin_opis = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;metin3.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.6</span><span class="s1">)</span>
+    <span class="s0">while not </span><span class="s1">metin_opis:</span>
+        <span class="s1">metin_opis = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;metin3.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.6</span><span class="s1">)</span>
+    <span class="s1">time.sleep(</span><span class="s3">8</span><span class="s1">)</span>
+
+<span class="s0">def </span><span class="s1">zbij_fale_przeciwnikow():</span>
+    <span class="s1">sprawdz_marmurek()</span>
+    <span class="s1">sprawdz_buffy()</span>
+    <span class="s1">print(</span><span class="s2">&quot;ZBIJAM FALE PRZECIWNIKÓW&quot;</span><span class="s1">)</span>
+    <span class="s1">metin = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;metin.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.65</span><span class="s1">)</span>
+    <span class="s0">while not </span><span class="s1">metin:</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">'e'</span><span class="s1">)</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">'space'</span><span class="s1">)</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">'w'</span><span class="s1">)</span>
+        <span class="s1">time.sleep(</span><span class="s3">5</span><span class="s1">)</span>
+        <span class="s1">ahk.key_up(</span><span class="s2">'e'</span><span class="s1">)</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">'d'</span><span class="s1">)</span>
+        <span class="s1">time.sleep(</span><span class="s3">6</span><span class="s1">)</span>
+        <span class="s1">ahk.key_press(</span><span class="s2">'2'</span><span class="s1">)</span>
+        <span class="s1">ahk.key_up(</span><span class="s2">'d'</span><span class="s1">)</span>
+        <span class="s1">metin = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;metin.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.65</span><span class="s1">)</span>
+
+    <span class="s1">ahk.key_up(</span><span class="s2">'e'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'w'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'space'</span><span class="s1">)</span>
+    <span class="s1">print(metin)</span>
+
+
+<span class="s0">def </span><span class="s1">zbij_bossy(nazwa_bossa):</span>
+    <span class="s1">sprawdz_marmurek()</span>
+    <span class="s1">sprawdz_buffy()</span>
+    <span class="s1">print(</span><span class="s2">f&quot;ZBIJAM </span><span class="s0">{</span><span class="s1">nazwa_bossa.upper()</span><span class="s0">}</span><span class="s2">&quot;</span><span class="s1">)</span>
+    <span class="s1">boss = pyautogui.locateCenterOnScreen(</span><span class="s2">f&quot;</span><span class="s0">{</span><span class="s1">nazwa_bossa</span><span class="s0">}</span><span class="s2">.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.65</span><span class="s1">)</span>
+    <span class="s1">ahk.key_down(</span><span class="s2">'space'</span><span class="s1">)</span>
+    <span class="s0">while not </span><span class="s1">boss:</span>
+        <span class="s1">time.sleep(</span><span class="s3">2</span><span class="s1">)</span>
+        <span class="s1">ahk.key_press(</span><span class="s2">'2'</span><span class="s1">)</span>
+        <span class="s1">boss = pyautogui.locateCenterOnScreen(</span><span class="s2">f&quot;</span><span class="s0">{</span><span class="s1">nazwa_bossa</span><span class="s0">}</span><span class="s2">.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.50</span><span class="s1">)</span>
+    <span class="s0">while </span><span class="s1">boss:</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">'space'</span><span class="s1">)</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">&quot;e&quot;</span><span class="s1">)</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">&quot;w&quot;</span><span class="s1">)</span>
+        <span class="s1">boss = pyautogui.locateCenterOnScreen(</span><span class="s2">f&quot;</span><span class="s0">{</span><span class="s1">nazwa_bossa</span><span class="s0">}</span><span class="s2">.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.50</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'space'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'e'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'w'</span><span class="s1">)</span>
+
+<span class="s0">def </span><span class="s1">zbij_komendantow():</span>
+    <span class="s1">sprawdz_marmurek()</span>
+    <span class="s1">sprawdz_buffy()</span>
+    <span class="s1">print(</span><span class="s2">&quot;Zbijam komendantow&quot;</span><span class="s1">)</span>
+    <span class="s1">boss = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;zin.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.65</span><span class="s1">)</span>
+    <span class="s0">while not </span><span class="s1">boss:</span>
+        <span class="s1">time.sleep(</span><span class="s3">2</span><span class="s1">)</span>
+        <span class="s1">ahk.key_press(</span><span class="s2">'2'</span><span class="s1">)</span>
+        <span class="s1">boss = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;zin.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.50</span><span class="s1">)</span>
+    <span class="s0">while </span><span class="s1">boss:</span>
+        <span class="s1">boss = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;zin.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.50</span><span class="s1">)</span>
+        <span class="s1">ahk.key_press(</span><span class="s2">&quot;2&quot;</span><span class="s1">)</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">&quot;space&quot;</span><span class="s1">)</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">&quot;e&quot;</span><span class="s1">)</span>
+        <span class="s1">ahk.key_down(</span><span class="s2">&quot;w&quot;</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'space'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'e'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'w'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">ponow_wyprawe():</span>
+    <span class="s1">sprawdz_marmurek()</span>
+    <span class="s1">sprawdz_buffy()</span>
+    <span class="s1">print(</span><span class="s2">'NAKURWIAM ZNOW'</span><span class="s1">)</span>
+    <span class="s1">przycisk = pyautogui.locateCenterOnScreen(</span><span class="s2">f&quot;ponow_wyprawe.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.75</span><span class="s1">)</span>
+    <span class="s1">pyautogui.moveTo(przycisk)</span>
+    <span class="s1">time.sleep(</span><span class="s3">1</span><span class="s1">)</span>
+    <span class="s1">pyautogui.click(button=</span><span class="s2">&quot;left&quot;</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">sprawdz_marmurek():</span>
+    <span class="s1">ahk.key_press(</span><span class="s2">&quot;f2&quot;</span><span class="s1">)</span>
+    <span class="s1">ahk.key_press(</span><span class="s2">&quot;f5&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s2">&quot;Sprawdzam marmurek&quot;</span><span class="s1">)</span>
+
+<span class="s0">def </span><span class="s1">sprawdz_buffy():</span>
+    <span class="s1">print(</span><span class="s2">&quot;Sprawdzam buffa&quot;</span><span class="s1">)</span>
+    <span class="s1">buff = pyautogui.locateCenterOnScreen(</span><span class="s2">&quot;buff.png&quot;</span><span class="s0">, </span><span class="s1">confidence=</span><span class="s3">0.65</span><span class="s1">)</span>
+    <span class="s0">if not </span><span class="s1">buff:</span>
+        <span class="s1">ahk.key_press(</span><span class="s2">&quot;f1&quot;</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s2">&quot;Zalaczam buffa&quot;</span><span class="s1">)</span>
+
+<span class="s1">ahk = AHK()</span>
+<span class="s1">pyautogui.getWindowsWithTitle(</span><span class="s2">&quot;Glevia2&quot;</span><span class="s1">)[</span><span class="s3">0</span><span class="s1">].activate()</span>
+<span class="s1">time.sleep(</span><span class="s3">1</span><span class="s1">)</span>
+
+<span class="s4"># brak_kluczy = pyautogui.locateCenterOnScreen(&quot;f3.png&quot;, confidence=0.65)</span>
+<span class="s0">def </span><span class="s1">lataj_dunga():</span>
+    <span class="s1">sprawdz_marmurek()</span>
+    <span class="s1">wyjeb_ze_spawna()</span>
+    <span class="s1">znajdz_i_zbij_metina()</span>
+    <span class="s1">zbij_fale_przeciwnikow()</span>
+    <span class="s1">znajdz_i_zbij_metina()</span>
+    <span class="s1">zbij_komendantow()</span>
+    <span class="s4"># ahk.key_up(&quot;space&quot;)</span>
+    <span class="s4"># zbij_bossy('komendanci')</span>
+    <span class="s4"># zbij_bossy('komendanci')</span>
+    <span class="s4"># ahk.key_press('a')</span>
+    <span class="s1">time.sleep(</span><span class="s3">3</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'space'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_down(</span><span class="s2">'t'</span><span class="s1">)</span>
+    <span class="s1">time.sleep(</span><span class="s3">2</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'t'</span><span class="s1">)</span>
+    <span class="s1">znajdz_i_zbij_metina()</span>
+    <span class="s1">zbij_fale_przeciwnikow()</span>
+    <span class="s1">znajdz_i_zbij_metina()</span>
+    <span class="s1">zbij_bossy(</span><span class="s2">'dowodca'</span><span class="s1">)</span>
+    <span class="s1">znajdz_i_zbij_metina()</span>
+    <span class="s1">zbij_bossy(</span><span class="s2">'smok'</span><span class="s1">)</span>
+    <span class="s1">ahk.key_down(</span><span class="s2">'space'</span><span class="s1">)</span>
+    <span class="s1">time.sleep(</span><span class="s3">20</span><span class="s1">)</span>
+    <span class="s1">ahk.key_up(</span><span class="s2">'space'</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s2">&quot;DUNG ZROBIONY&quot;</span><span class="s1">)</span>
+    <span class="s1">ponow_wyprawe()</span>
+<span class="s0">while True</span><span class="s1">:</span>
+    <span class="s1">lataj_dunga()</span></pre>
+</body>
+</html>
